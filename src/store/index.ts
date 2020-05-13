@@ -1,5 +1,6 @@
 import {combineReducers} from "redux";
-import {loginReducer, LoginState} from "./login/login.reducers";
+import {loginReducer} from "./login/login.reducers";
+import {LoginState} from "./login/types";
 
 export interface State {
     loginState: LoginState;

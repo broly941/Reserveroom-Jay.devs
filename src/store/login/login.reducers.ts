@@ -1,35 +1,32 @@
-import {LoginAction, LoginActionTypes} from "./login.actions";
-
-export interface LoginState {
-    username: string,
-    password: string,
-    login: boolean,
-    token: string,
-}
+import {LOGIN_FAILURE, LOGIN_SUCCESS, LoginActionTypes, LoginState, LOGOUT} from "./types";
 
 const initialState: LoginState = {
     username: '',
     password: '',
-    login: false,
-    token: ''
+    loggedIn: false,
+    token: '',
+    error: {code: "", message: ""}
 };
 
-export function loginReducer(state: LoginState = initialState, action: LoginAction): LoginState {
+export function loginReducer(state: LoginState = initialState, action: LoginActionTypes): LoginState {
     switch (action.type) {
-        case LoginActionTypes.LOGIN_SUCCESS:
+        case LOGIN_SUCCESS:
             return {
                 ...state,
-                login: true,
-                token: action.payload.token,
-                username: action.payload.username,
-                password: action.payload.passowrd
+                ...action.payload,
+                error: {code: '', message: ''}
             };
-        case LoginActionTypes.LOGOUT:
-        return {
-            ...state,
-            login: false,
-            token: ''
-        }
+        case LOGOUT:
+            debugger;
+            return {
+                ...state,
+                ...initialState
+            }
+        case LOGIN_FAILURE:
+            return {
+                ...state,
+                ...action.payload
+            }
         default:
             return state;
     }

@@ -1,17 +1,8 @@
-export enum LoginActionTypes {
-    LOGOUT = 'LOGOUT',
-    LOGIN = 'LOGIN',
-    LOGIN_SUCCESS = 'LOGIN_SUCCESS',
-}
+import {LOGIN, LoginActionTypes, LOGOUT} from "./types";
 
-export interface LoginAction {
-    readonly type: LoginActionTypes;
-    readonly payload?: string | any;
-}
-
-export const login = (username: string, password: string): LoginAction => {
+export const login = (username: string, password: string): LoginActionTypes => {
     return {
-        type: LoginActionTypes.LOGIN,
+        type: LOGIN,
         payload: {
             username: username,
             password: password
@@ -19,4 +10,4 @@ export const login = (username: string, password: string): LoginAction => {
     };
 };
 
-export const logout = (): LoginAction => ({type: LoginActionTypes.LOGOUT});
+export const logout = (): LoginActionTypes => ({type: LOGOUT});

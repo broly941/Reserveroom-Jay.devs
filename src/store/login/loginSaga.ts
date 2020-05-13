@@ -1,38 +1,40 @@
 import {call, put, takeLatest, takeLeading} from 'redux-saga/effects'
-import {LoginActionTypes} from './login.actions';
 import {loginService} from "../../shared/services/LoginService";
+import {LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS, LoginAction, LOGOUT} from "./types";
 
-function* login(action: any) {
+function* login(action: LoginAction) {
     try {
-        const response = yield call(loginService.login, action.payload.username, action.payload.password);
+        const response = yield call(loginService.loggedIn, action.payload.username, action.payload.password);
         yield put({
-            type: LoginActionTypes.LOGIN_SUCCESS, payload: {
+            type: LOGIN_SUCCESS,
+            payload: {
                 username: action.payload.username,
                 password: action.payload.password,
-                token: response.token
+                loggedIn: true,
+                token: response.data.token
             }
         });
     } catch (e) {
-        // yield put({type: LoginActionTypes.LOGIN_FAILURE, payload: e.message});
+        let status = e.response.data.status;
+        let error = e.response.data.error;
+        console.error(status, error);
+        yield put({type: LOGIN_FAILURE,
+            payload: {
+                error: {
+                    code: status + ' ' + error,
+                    message: e.response.data.message
+                }
+            }
+        });
     }
 }
 
 function* logout() {
-    // try {
-    //     localStorageUtil.put('loggedIn', false);
-    //     yield put({type: UserPreferenceActionTypes.SET_SPELLCHECK, payload: false});
-    //     yield put({type: LoginActionTypes.SET_LOGGED_IN, payload: false});
-    //     yield put({type: LoginActionTypes.LOGOUT_SUCCESS});
-    //     yield put({type: AppActionTypes.CLEAR_APP});
-    //     store.dispatch(push('/login'));
-    // } catch (e) {
-    //     console.log('logout with error', e)
-    // }
 }
 
 function* loginSaga() {
-    yield takeLatest(LoginActionTypes.LOGIN, login);
-    yield takeLeading(LoginActionTypes.LOGOUT, logout);
+    yield takeLatest(LOGIN, login);
+    yield takeLeading(LOGOUT, logout);
 }
 
 export default loginSaga;
