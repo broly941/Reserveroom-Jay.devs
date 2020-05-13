@@ -10,7 +10,6 @@ class LoginContainer extends Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
-            //todo set empty state
             username: '',
             password: ''
         };
@@ -26,7 +25,7 @@ class LoginContainer extends Component<any, any> {
                 (
                     <section className="hero is-success is-fullheight has-background-light">
                         {
-                            this.props.loginState.error.code &&
+                            this.props.loginState.error &&
                             <div className="notification is-danger is-light has-text-centered">
                                 <button className="delete "/>
                                 <p>Error: {this.props.loginState.error.code}</p>

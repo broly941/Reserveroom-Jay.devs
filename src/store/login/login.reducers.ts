@@ -1,11 +1,11 @@
 import {LOGIN_FAILURE, LOGIN_SUCCESS, LoginActionTypes, LoginState, LOGOUT} from "./types";
 
 const initialState: LoginState = {
-    username: '',
-    password: '',
+    username: null,
+    password: null,
     loggedIn: false,
-    token: '',
-    error: {code: "", message: ""}
+    token: null,
+    error: null
 };
 
 export function loginReducer(state: LoginState = initialState, action: LoginActionTypes): LoginState {
@@ -13,11 +13,9 @@ export function loginReducer(state: LoginState = initialState, action: LoginActi
         case LOGIN_SUCCESS:
             return {
                 ...state,
-                ...action.payload,
-                error: {code: '', message: ''}
+                ...action.payload
             };
         case LOGOUT:
-            debugger;
             return {
                 ...state,
                 ...initialState

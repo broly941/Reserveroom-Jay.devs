@@ -1,17 +1,16 @@
+import {ErrorState} from "../types";
+
 export const LOGOUT = 'LOGOUT';
 export const LOGIN = 'LOGIN';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
 export interface LoginState {
-    username: string,
-    password: string,
+    username: string | null,
+    password: string | null,
     loggedIn: boolean,
-    token: string,
-    error: {
-        code: string,
-        message: string
-    }
+    token: string | null,
+    error: ErrorState | null
 }
 
 export interface LoginAction {

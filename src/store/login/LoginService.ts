@@ -1,5 +1,5 @@
 import axios from "axios";
-import {AuthenticationEndpoints} from "../constants/urls";
+import {AuthenticationEndpoints} from "../../shared/constants/urls";
 
 class LoginService {
 

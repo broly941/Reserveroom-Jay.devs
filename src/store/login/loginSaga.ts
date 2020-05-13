@@ -1,5 +1,5 @@
-import {call, put, takeLatest, takeLeading} from 'redux-saga/effects'
-import {loginService} from "../../shared/services/LoginService";
+import {call, put, takeEvery, takeLatest} from 'redux-saga/effects'
+import {loginService} from "./LoginService";
 import {LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS, LoginAction, LOGOUT} from "./types";
 
 function* login(action: LoginAction) {
@@ -18,7 +18,8 @@ function* login(action: LoginAction) {
         let status = e.response.data.status;
         let error = e.response.data.error;
         console.error(status, error);
-        yield put({type: LOGIN_FAILURE,
+        yield put({
+            type: LOGIN_FAILURE,
             payload: {
                 error: {
                     code: status + ' ' + error,
@@ -33,8 +34,8 @@ function* logout() {
 }
 
 function* loginSaga() {
-    yield takeLatest(LOGIN, login);
-    yield takeLeading(LOGOUT, logout);
+    yield takeEvery(LOGIN, login);
+    yield takeLatest(LOGOUT, logout);
 }
 
 export default loginSaga;
