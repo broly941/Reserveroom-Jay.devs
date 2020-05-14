@@ -1,3 +1,5 @@
 export enum Titles {
-    NOT_FOUND_PAGE = 'Page Not Found'
+    PAGE_NOT_FOUND = 'Page Not Found',
+    LOGIN_PAGE = 'Sign In',
+    WORKFLOW = 'Reserveroom',
 }

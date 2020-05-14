@@ -10,7 +10,7 @@ export interface PeopleState {
         username: string,
         email: string,
         mobilePhone: string
-    } [] | null,
+    } [],
     error: ErrorState | null,
     isOpened: boolean,
 }

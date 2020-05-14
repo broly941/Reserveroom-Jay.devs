@@ -3,14 +3,13 @@ import {LOGOUT} from "../login/types";
 
 const initialState: PeopleState = {
     isOpened: false,
-    people: null,
+    people: [],
     error: null
 };
 
 export function peopleReducer(state: PeopleState = initialState, action: PeopleActionTypes): PeopleState {
     switch (action.type) {
         case LOAD_PEOPLE_SUCCESS:
-            debugger;
             return {
                 ...state,
                 ...action.payload

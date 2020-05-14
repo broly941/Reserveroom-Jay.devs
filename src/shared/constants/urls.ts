@@ -5,6 +5,7 @@ export enum AuthenticationEndpoints {
 export enum BookingEndpoints {
     LOAD_BOOKING = 'http://localhost:8080/api/events/byName/{username}',
 }
+
 export enum PeopleEndpoints {
     LOAD_PEOPLE = 'http://localhost:8080/api/users',
 }

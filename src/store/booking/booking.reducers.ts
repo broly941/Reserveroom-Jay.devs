@@ -3,7 +3,7 @@ import {LOGOUT} from "../login/types";
 
 const initialState: BookingState = {
     isOpened: false,
-    bookings: null,
+    bookings: [],
     error: null
 };
 

@@ -1,9 +1,10 @@
 import * as React from 'react';
-import {Component} from 'react';
+import {State} from "../../../store";
+import {connect} from "react-redux";
 
-class PeopleContainer extends Component<any, any> {
-    initiateTable = (people: any) => {
-        debugger;
+//todo React.FC<PeopleProps> = ({peopleProps}) => {
+const PeopleContainer: ({peopleProps}: { peopleProps: any }) => false | any = ({peopleProps}) => {
+    const initiateTable = (people: any) => {
         return (
             <table className="table">
                 <thead>
@@ -31,21 +32,24 @@ class PeopleContainer extends Component<any, any> {
         );
     };
 
-    render() {
-        debugger;
-        return (
-            this.props.isOpened &&
-            <section className="hero">
-                <div className="hero-body">
-                    <div className="container table-container">
-                        <h1 className="title">People</h1>
-                        <h2 className="subtitle">Around you</h2>
-                        {this.initiateTable(this.props.people)}
-                    </div>
+    return (
+        peopleProps.isOpened &&
+        <section className="hero">
+            <div className="hero-body">
+                <div className="container table-container">
+                    <h1 className="title">People</h1>
+                    <h2 className="subtitle">Around you</h2>
+                    {initiateTable(peopleProps.people)}
                 </div>
-            </section>
-        );
-    }
+            </div>
+        </section>
+    );
 }
 
-export default PeopleContainer;
+const mapStateToProps = (state: State) => {
+    return {
+        peopleProps: state.peopleState
+    }
+};
+
+export default connect(mapStateToProps)(PeopleContainer);

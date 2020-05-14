@@ -10,7 +10,7 @@ export interface BookingState {
         roomName: string,
         startDate: Date,
         finishDate: Date
-    } [] | null,
+    } [],
     error: ErrorState | null,
     isOpened: boolean,
 }

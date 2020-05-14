@@ -4,12 +4,13 @@ export const LOGOUT = 'LOGOUT';
 export const LOGIN = 'LOGIN';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+export const HIDE_NOTIFICATION = 'HIDE_NOTIFICATION';
 
 export interface LoginState {
-    username: string | null,
-    password: string | null,
+    username: string,
+    password: string,
     loggedIn: boolean,
-    token: string | null,
+    token: string,
     error: ErrorState | null
 }
 
@@ -35,4 +36,13 @@ export interface LoginFailureAction {
     payload: LoginState;
 }
 
-export type LoginActionTypes = LoginAction | LogoutAction | LoginSuccessAction | LoginFailureAction
+export interface HideNotificationAction {
+    type: typeof HIDE_NOTIFICATION;
+}
+
+export type LoginActionTypes =
+    LoginAction
+    | LogoutAction
+    | LoginSuccessAction
+    | LoginFailureAction
+    | HideNotificationAction

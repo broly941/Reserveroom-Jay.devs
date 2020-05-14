@@ -1,8 +1,10 @@
 import * as React from 'react';
-import {Component} from 'react';
+import {State} from "../../../store";
+import {connect} from "react-redux";
 
-class BookingContainer extends Component<any, any> {
-    initiateTable = (booking: any) => {
+//todo React.FC<BookingProps> = ({bookingProps}) => {
+const BookingContainer: ({bookingProps}: { bookingProps: any }) => false | any = ({bookingProps}) => {
+    const initiateTable = (booking: any) => {
         return (
             <table className="table">
                 <thead>
@@ -30,20 +32,24 @@ class BookingContainer extends Component<any, any> {
         );
     };
 
-    render() {
-        return (
-            this.props.isOpened &&
-            <section className="hero">
-                <div className="hero-body">
-                    <div className="container table-container">
-                        <h1 className="title">Booking</h1>
-                        <h2 className="subtitle">Your reserved rooms</h2>
-                        {this.initiateTable(this.props.bookings)}
-                    </div>
+    return (
+        bookingProps.isOpened &&
+        <section className="hero">
+            <div className="hero-body">
+                <div className="container table-container">
+                    <h1 className="title">Booking</h1>
+                    <h2 className="subtitle">Your reserved rooms</h2>
+                    {initiateTable(bookingProps.bookings)}
                 </div>
-            </section>
-        );
-    }
+            </div>
+        </section>
+    );
 }
 
-export default BookingContainer;
+const mapStateToProps = (state: State) => {
+    return {
+        bookingProps: state.bookingState
+    }
+};
+
+export default connect(mapStateToProps)(BookingContainer);

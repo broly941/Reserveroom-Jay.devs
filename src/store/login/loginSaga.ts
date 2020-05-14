@@ -15,6 +15,7 @@ function* login(action: LoginAction) {
             }
         });
     } catch (e) {
+        debugger;
         let status = e.response.data.status;
         let error = e.response.data.error;
         console.error(status, error);
