@@ -1,11 +1,11 @@
 import {call, put, takeLatest} from 'redux-saga/effects'
-import {LOAD_BOOKINGS, LOAD_BOOKINGS_FAILURE, LOAD_BOOKINGS_SUCCESS, LoadBookingAction} from "./types";
+import {BookingState, LOAD_BOOKINGS, LOAD_BOOKINGS_FAILURE, LOAD_BOOKINGS_SUCCESS, LoadBookingAction} from "./types";
 import {bookingService} from "./BookingService";
 
 function* loadBookings(action: LoadBookingAction) {
     try {
         const response = yield call(bookingService.loadBookings, action.payload.username, action.payload.token);
-        let result = response.data.map((booking: any) => {
+        let result: BookingState = response.data.map((booking: any) => {
             return {
                 roomName: booking.room.name,
                 startDate: booking.startDate,

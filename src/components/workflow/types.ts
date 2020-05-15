@@ -9,4 +9,5 @@ export interface TopNavProps {
     logout: () => void,
     loadBookings: (username: string, token: string) => void,
     loadPeople: (token: string) => void,
+    loadRooms: (token: string) => void,
 }

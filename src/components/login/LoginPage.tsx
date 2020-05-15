@@ -4,8 +4,8 @@ import {LoginProps} from "./types";
 import {ErrorNotification} from "./ErrorNotification";
 
 export const LoginPage: React.FC<LoginProps> = ({loginProps, login, hideNotification}) => {
-    const [username, setUsername] = useState(loginProps.username);
-    const [password, setPassword] = useState(loginProps.username);
+    const [username, setUsername] = useState(loginProps.user.username);
+    const [password, setPassword] = useState(loginProps.password);
 
     return (
         loginProps.loggedIn ? <Redirect to={'/home'}/> :

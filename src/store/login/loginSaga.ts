@@ -1,21 +1,29 @@
 import {call, put, takeEvery, takeLatest} from 'redux-saga/effects'
 import {loginService} from "./LoginService";
 import {LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS, LoginAction, LOGOUT} from "./types";
+import {peopleService} from "../people/PeopleService";
 
 function* login(action: LoginAction) {
     try {
-        const response = yield call(loginService.loggedIn, action.payload.username, action.payload.password);
+        let password = action.payload.password;
+        const authResponse = yield call(loginService.loggedIn, action.payload.username, password);
+        let token = authResponse.data.token;
+        const userInfo = yield call(peopleService.loadUserInfo, action.payload.username, token);
         yield put({
             type: LOGIN_SUCCESS,
             payload: {
-                username: action.payload.username,
-                password: action.payload.password,
-                loggedIn: true,
-                token: response.data.token
+                user: {
+                    userId: userInfo.data.userId,
+                    username: userInfo.data.userName,
+                    email: userInfo.data.email,
+                    mobilePhone: userInfo.data.mobilePhoneNumber
+                },
+                password: password,
+                token: token,
+                loggedIn: true
             }
         });
     } catch (e) {
-        debugger;
         let status = e.response.data.status;
         let error = e.response.data.error;
         console.error(status, error);

@@ -9,16 +9,18 @@ import {loadPeople} from "../../../store/people/people.actions";
 import {TopNavProps} from "../types";
 import TopNavMenu from "./TopNavMenu";
 import {TopNavLogo} from "./TopNavLogo";
+import {loadRooms} from "../../../store/reserve/reserve.actions";
 
-const TopNavContainer: React.FC<TopNavProps> = ({loginProps, logout, loadBookings, loadPeople}) => {
+const TopNavContainer: React.FC<TopNavProps> = ({loginProps, logout, loadBookings, loadPeople, loadRooms}) => {
     return (
         <nav className="navbar">
             <div className="container">
                 <TopNavLogo/>
                 <TopNavMenu
-                    username={loginProps.username} logout={logout}
-                    loadBookings={() => loadBookings(loginProps.username, loginProps.token)}
+                    username={loginProps.user.username} logout={logout}
+                    loadBookings={() => loadBookings(loginProps.user.username, loginProps.token)}
                     loadPeople={() => loadPeople(loginProps.token)}
+                    loadRooms={() => loadRooms(loginProps.token)}
                 />
             </div>
         </nav>
@@ -36,6 +38,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         logout: () => dispatch(logout()),
         loadBookings: (username: string, token: string) => dispatch(loadBookings(username, token)),
         loadPeople: (token: string) => dispatch(loadPeople(token)),
+        loadRooms: (token: string) => dispatch(loadRooms(token))
     }
 };
 

@@ -1,4 +1,5 @@
 import {ErrorState} from "../types";
+import {People} from "../people/types";
 
 export const LOGOUT = 'LOGOUT';
 export const LOGIN = 'LOGIN';
@@ -7,7 +8,7 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const HIDE_NOTIFICATION = 'HIDE_NOTIFICATION';
 
 export interface LoginState {
-    username: string,
+    user: People,
     password: string,
     loggedIn: boolean,
     token: string,

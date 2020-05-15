@@ -10,11 +10,12 @@ import WorkflowPage from "./components/workflow/WorkflowContainier";
 import "./index.scss";
 import {PageNotFound} from "./components/pageNotFound/PageNotFound";
 import sagas from "./store/sagas";
+import logger from 'redux-logger'
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
     reducers,
-    applyMiddleware(sagaMiddleware)
+    applyMiddleware(sagaMiddleware, logger)
 );
 sagaMiddleware.run(sagas)
 

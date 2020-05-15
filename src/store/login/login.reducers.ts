@@ -1,7 +1,12 @@
 import {HIDE_NOTIFICATION, LOGIN_FAILURE, LOGIN_SUCCESS, LoginActionTypes, LoginState, LOGOUT} from "./types";
 
 const initialState: LoginState = {
-    username: '',
+    user: {
+        userId: -9999,
+        username:'',
+        email: '',
+        mobilePhone: ''
+    },
     password: '',
     loggedIn: false,
     token: '',

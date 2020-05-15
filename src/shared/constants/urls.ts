@@ -8,6 +8,11 @@ export enum BookingEndpoints {
 
 export enum PeopleEndpoints {
     LOAD_PEOPLE = 'http://localhost:8080/api/users',
+    LOAD_USER_INFO = 'http://localhost:8080/api/users/userinfo/{username}',
+}
+
+export enum ReserveroomEndpoints {
+    LOAD_ROOMS = 'http://localhost:8080/api/rooms',
 }
 
 export enum WebLinks {

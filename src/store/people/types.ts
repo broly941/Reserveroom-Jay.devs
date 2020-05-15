@@ -5,8 +5,8 @@ export const LOAD_PEOPLE = 'LOAD_PEOPLE';
 export const LOAD_PEOPLE_SUCCESS = 'LOAD_PEOPLE_SUCCESS';
 export const LOAD_PEOPLE_FAILURE = 'LOAD_PEOPLE_FAILURE';
 
-
 export interface People {
+    userId: number,
     username: string,
     email: string,
     mobilePhone: string
