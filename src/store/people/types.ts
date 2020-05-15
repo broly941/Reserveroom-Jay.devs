@@ -5,12 +5,15 @@ export const LOAD_PEOPLE = 'LOAD_PEOPLE';
 export const LOAD_PEOPLE_SUCCESS = 'LOAD_PEOPLE_SUCCESS';
 export const LOAD_PEOPLE_FAILURE = 'LOAD_PEOPLE_FAILURE';
 
+
+export interface People {
+    username: string,
+    email: string,
+    mobilePhone: string
+}
+
 export interface PeopleState {
-    people: {
-        username: string,
-        email: string,
-        mobilePhone: string
-    } [],
+    people: People [],
     error: ErrorState | null,
     isOpened: boolean,
 }

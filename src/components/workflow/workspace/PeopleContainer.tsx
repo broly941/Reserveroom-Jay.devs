@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {State} from "../../../store";
 import {connect} from "react-redux";
+import {PeopleProps} from "./types";
 
-//todo React.FC<PeopleProps> = ({peopleProps}) => {
-const PeopleContainer: ({peopleProps}: { peopleProps: any }) => false | any = ({peopleProps}) => {
-    const initiateTable = (people: any) => {
+const PeopleContainer: React.FC<PeopleProps> = ({people, error}) => {
+    const initiateTable = () => {
         return (
             <table className="table">
                 <thead>
@@ -33,13 +33,12 @@ const PeopleContainer: ({peopleProps}: { peopleProps: any }) => false | any = ({
     };
 
     return (
-        peopleProps.isOpened &&
         <section className="hero">
             <div className="hero-body">
                 <div className="container table-container">
                     <h1 className="title">People</h1>
                     <h2 className="subtitle">Around you</h2>
-                    {initiateTable(peopleProps.people)}
+                    {initiateTable()}
                 </div>
             </div>
         </section>
@@ -48,7 +47,8 @@ const PeopleContainer: ({peopleProps}: { peopleProps: any }) => false | any = ({
 
 const mapStateToProps = (state: State) => {
     return {
-        peopleProps: state.peopleState
+        people: state.peopleState.people,
+        error: state.peopleState.error
     }
 };
 

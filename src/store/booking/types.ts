@@ -5,14 +5,16 @@ export const LOAD_BOOKINGS = 'LOAD_BOOKINGS';
 export const LOAD_BOOKINGS_SUCCESS = 'LOAD_BOOKINGS_SUCCESS';
 export const LOAD_BOOKINGS_FAILURE = 'LOAD_BOOKINGS_FAILURE';
 
+export interface Booking {
+    roomName: string,
+    startDate: Date,
+    finishDate: Date
+}
+
 export interface BookingState {
-    bookings: {
-        roomName: string,
-        startDate: Date,
-        finishDate: Date
-    } [],
+    bookings: Booking [],
     error: ErrorState | null,
-    isOpened: boolean,
+    isOpened: boolean
 }
 
 export interface LoadBookingAction {

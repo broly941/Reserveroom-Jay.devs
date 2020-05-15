@@ -3,7 +3,7 @@ import React, {useEffect} from "react";
 import {State} from "../../store";
 import {connect} from "react-redux";
 import TopNavContainer from "./topnav/TopNavContainer";
-import {WorkspaceContainer} from "./workspace/WorkspaceContainer";
+import WorkspaceContainer from "./workspace/WorkspaceContainer";
 import {WorkflowProps} from "./types";
 import {Titles} from "../../shared/constants/title";
 import {Footer} from "./footer/Footer";

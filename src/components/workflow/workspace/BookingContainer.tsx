@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {State} from "../../../store";
 import {connect} from "react-redux";
+import {BookingProps} from "./types";
 
-//todo React.FC<BookingProps> = ({bookingProps}) => {
-const BookingContainer: ({bookingProps}: { bookingProps: any }) => false | any = ({bookingProps}) => {
-    const initiateTable = (booking: any) => {
+const BookingContainer: React.FC<BookingProps> = ({bookings, error}) => {
+    const initiateTable = () => {
         return (
             <table className="table">
                 <thead>
@@ -16,7 +16,7 @@ const BookingContainer: ({bookingProps}: { bookingProps: any }) => false | any =
                 </tr>
                 </thead>
                 {
-                    booking.map((booking: any, index: number) => {
+                    bookings.map((booking: any, index: number) => {
                         return (
                             <tbody key={index}>
                             <tr>
@@ -33,13 +33,12 @@ const BookingContainer: ({bookingProps}: { bookingProps: any }) => false | any =
     };
 
     return (
-        bookingProps.isOpened &&
         <section className="hero">
             <div className="hero-body">
                 <div className="container table-container">
                     <h1 className="title">Booking</h1>
                     <h2 className="subtitle">Your reserved rooms</h2>
-                    {initiateTable(bookingProps.bookings)}
+                    {initiateTable()}
                 </div>
             </div>
         </section>
@@ -48,7 +47,8 @@ const BookingContainer: ({bookingProps}: { bookingProps: any }) => false | any =
 
 const mapStateToProps = (state: State) => {
     return {
-        bookingProps: state.bookingState
+        bookings: state.bookingState.bookings,
+        error: state.bookingState.error
     }
 };
 
