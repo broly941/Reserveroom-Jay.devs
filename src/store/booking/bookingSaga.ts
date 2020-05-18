@@ -1,6 +1,7 @@
 import {call, put, takeLatest} from 'redux-saga/effects'
 import {BookingState, LOAD_BOOKINGS, LOAD_BOOKINGS_FAILURE, LOAD_BOOKINGS_SUCCESS, LoadBookingAction} from "./types";
 import {bookingService} from "./BookingService";
+import {BookDate} from "../types";
 
 function* loadBookings(action: LoadBookingAction) {
     try {
@@ -8,8 +9,10 @@ function* loadBookings(action: LoadBookingAction) {
         let result: BookingState = response.data.map((booking: any) => {
             return {
                 roomName: booking.room.name,
-                startDate: booking.startDate,
-                finishDate: booking.finishDate
+                date: {
+                    startDate: booking.startDate,
+                    finishDate: booking.finishDate
+                }
             }
         })
         yield put({

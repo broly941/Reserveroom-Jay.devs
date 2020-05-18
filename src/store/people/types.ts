@@ -19,20 +19,20 @@ export interface PeopleState {
 }
 
 export interface LoadPeopleAction {
-    type: typeof LOAD_PEOPLE;
+    type: typeof LOAD_PEOPLE,
     payload: {
         token: string
-    };
+    }
 }
 
 export interface LoadPeopleSuccessAction {
-    type: typeof LOAD_PEOPLE_SUCCESS;
-    payload: PeopleState;
+    type: typeof LOAD_PEOPLE_SUCCESS,
+    payload: PeopleState
 }
 
 export interface LoadPeopleFailureAction {
-    type: typeof LOAD_PEOPLE_FAILURE;
-    payload: { error: ErrorState };
+    type: typeof LOAD_PEOPLE_FAILURE,
+    payload: { error: ErrorState }
 }
 
 export type PeopleActionTypes = LoadPeopleAction | LoadPeopleSuccessAction | LoadPeopleFailureAction | LogoutAction

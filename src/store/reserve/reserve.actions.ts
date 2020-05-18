@@ -1,7 +1,7 @@
-import {LOAD_ROOMS, ReserveActionTypes} from "./types";
+import {LOAD_ROOMS, RESERVE_ROOM, ReserveActionTypes} from "./types";
+import {BookDate} from "../types";
 
 export const loadRooms = (token: string): ReserveActionTypes => {
-    console.log('Отправляю акшион!');
     return {
         type: LOAD_ROOMS,
         payload: {
@@ -9,3 +9,15 @@ export const loadRooms = (token: string): ReserveActionTypes => {
         }
     };
 };
+
+export const reserveRoom = (userId: number, roomId: number, date: BookDate, token: string): ReserveActionTypes => {
+    return {
+        type: RESERVE_ROOM,
+        payload: {
+            userId: userId,
+            roomId: roomId,
+            date: date,
+            token: token
+        }
+    }
+}

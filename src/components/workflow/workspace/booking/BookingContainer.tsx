@@ -1,10 +1,11 @@
 import * as React from 'react';
-import {State} from "../../../store";
+import {State} from "../../../../store";
 import {connect} from "react-redux";
-import {BookingProps} from "./types";
+import {BookingProps} from "../types";
+import {Booking} from "../../../../store/booking/types";
 
 const BookingContainer: React.FC<BookingProps> = ({bookings, error}) => {
-    const initiateTable = () => {
+    const initiateBookingTable = () => {
         return (
             <table className="table">
                 <thead>
@@ -16,14 +17,14 @@ const BookingContainer: React.FC<BookingProps> = ({bookings, error}) => {
                 </tr>
                 </thead>
                 {
-                    bookings.map((booking: any, index: number) => {
+                    bookings.map((booking: Booking, index: number) => {
                         return (
                             <tbody key={index}>
                             <tr>
                                 <th>{index}</th>
                                 <td>{booking.roomName}</td>
-                                <td>{booking.startDate}</td>
-                                <td>{booking.finishDate}</td>
+                                <td>{booking.date.startDate}</td>
+                                <td>{booking.date.finishDate}</td>
                             </tr>
                             </tbody>)
                     })
@@ -33,12 +34,12 @@ const BookingContainer: React.FC<BookingProps> = ({bookings, error}) => {
     };
 
     return (
-        <section className="hero">
+        <section className="hero is-large">
             <div className="hero-body">
-                <div className="container table-container">
+                <div className="table-container">
                     <h1 className="title">Booking</h1>
                     <h2 className="subtitle">Your reserved rooms</h2>
-                    {initiateTable()}
+                    {initiateBookingTable()}
                 </div>
             </div>
         </section>

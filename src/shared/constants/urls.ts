@@ -13,6 +13,7 @@ export enum PeopleEndpoints {
 
 export enum ReserveroomEndpoints {
     LOAD_ROOMS = 'http://localhost:8080/api/rooms',
+    RESERVE_ROOM = 'http://localhost:8080/api/events',
 }
 
 export enum WebLinks {

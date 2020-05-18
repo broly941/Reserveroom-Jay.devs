@@ -13,7 +13,7 @@ import {loadRooms} from "../../../store/reserve/reserve.actions";
 
 const TopNavContainer: React.FC<TopNavProps> = ({loginProps, logout, loadBookings, loadPeople, loadRooms}) => {
     return (
-        <nav className="navbar">
+        <nav className="navbar is-fixed-top">
             <div className="container">
                 <TopNavLogo/>
                 <TopNavMenu

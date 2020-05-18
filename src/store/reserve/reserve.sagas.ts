@@ -1,5 +1,13 @@
-import {call, put, takeLatest} from 'redux-saga/effects'
-import {LOAD_ROOMS, LOAD_ROOMS_FAILURE, LOAD_ROOMS_SUCCESS, LoadRoomsAction, ReserveState} from "./types";
+import {call, put, takeEvery, takeLatest} from 'redux-saga/effects'
+import {
+    LOAD_ROOMS,
+    LOAD_ROOMS_FAILURE,
+    LOAD_ROOMS_SUCCESS,
+    LoadRoomsAction,
+    RESERVE_ROOM,
+    ReserveRoomAction,
+    ReserveState
+} from "./types";
 import {reserveService} from "./ReserveService";
 
 function* loadRooms(action: LoadRoomsAction) {
@@ -35,8 +43,20 @@ function* loadRooms(action: LoadRoomsAction) {
     }
 }
 
+function* reserveRoom(action: ReserveRoomAction) {
+    try {
+        debugger;
+        const reserveRoomResponse = yield call(reserveService.reserveRoom, action.payload.userId, action.payload.roomId,
+            action.payload.date, action.payload.token);
+        debugger;
+    } catch (e) {
+        debugger;
+    }
+}
+
 function* reserveSaga() {
     yield takeLatest(LOAD_ROOMS, loadRooms);
+    yield takeEvery(RESERVE_ROOM, reserveRoom);
 }
 
 export default reserveSaga;

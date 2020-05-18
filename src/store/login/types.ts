@@ -16,29 +16,29 @@ export interface LoginState {
 }
 
 export interface LoginAction {
-    type: typeof LOGIN;
+    type: typeof LOGIN,
     payload: {
         username: string,
         password: string
-    };
+    }
 }
 
 export interface LoginSuccessAction {
-    type: typeof LOGIN_SUCCESS;
-    payload: LoginState;
+    type: typeof LOGIN_SUCCESS,
+    payload: LoginState
 }
 
 export interface LogoutAction {
-    type: typeof LOGOUT;
+    type: typeof LOGOUT
 }
 
 export interface LoginFailureAction {
-    type: typeof LOGIN_FAILURE;
-    payload: LoginState;
+    type: typeof LOGIN_FAILURE,
+    payload: LoginState
 }
 
 export interface HideNotificationAction {
-    type: typeof HIDE_NOTIFICATION;
+    type: typeof HIDE_NOTIFICATION
 }
 
 export type LoginActionTypes =

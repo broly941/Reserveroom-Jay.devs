@@ -1,10 +1,11 @@
 import * as React from 'react';
-import {State} from "../../../store";
+import {State} from "../../../../store";
 import {connect} from "react-redux";
-import {PeopleProps} from "./types";
+import {PeopleProps} from "../types";
+import {People} from "../../../../store/people/types";
 
 const PeopleContainer: React.FC<PeopleProps> = ({people, error}) => {
-    const initiateTable = () => {
+    const initiatePeopleTable = () => {
         return (
             <table className="table">
                 <thead>
@@ -16,7 +17,7 @@ const PeopleContainer: React.FC<PeopleProps> = ({people, error}) => {
                 </tr>
                 </thead>
                 {
-                    people.map((person: any, index: number) => {
+                    people.map((person: People, index: number) => {
                         return (
                             <tbody key={index}>
                             <tr>
@@ -33,12 +34,12 @@ const PeopleContainer: React.FC<PeopleProps> = ({people, error}) => {
     };
 
     return (
-        <section className="hero">
+        <section className="hero is-large">
             <div className="hero-body">
-                <div className="container table-container">
+                <div className="table-container">
                     <h1 className="title">People</h1>
                     <h2 className="subtitle">Around you</h2>
-                    {initiateTable()}
+                    {initiatePeopleTable()}
                 </div>
             </div>
         </section>

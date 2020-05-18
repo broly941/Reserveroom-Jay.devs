@@ -8,7 +8,7 @@ export const PageNotFound: React.FC = () => {
     }, []);
 
     return (
-        <section className="section is-medium">
+        <section className="section is-large">
             <div className="container">
                 <div className="columns is-vcentered">
                     <div className="column has-text-centered">
