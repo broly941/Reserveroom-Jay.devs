@@ -1,15 +1,11 @@
 import * as React from 'react';
 import {State} from "../../../../shared/store";
-import {connect} from "react-redux";
+import {useSelector} from "react-redux";
 import {Booking} from "./redux/types";
-import {ErrorState} from '../../../../shared/store/types';
 
-interface ThisProps {
-    bookings: Booking [],
-    error: ErrorState | null
-}
+export const BookingPage: React.FC = () => {
+    const bookings = useSelector((state: State) => state.bookingState.bookings);
 
-const BookingPage: React.FC<ThisProps> = ({bookings, error}) => {
     const initiateBookingTable = () => {
         return (
             <table className="table">
@@ -50,12 +46,3 @@ const BookingPage: React.FC<ThisProps> = ({bookings, error}) => {
         </section>
     );
 }
-
-const mapStateToProps = (state: State) => {
-    return {
-        bookings: state.bookingState.bookings,
-        error: state.bookingState.error
-    }
-};
-
-export default connect(mapStateToProps)(BookingPage);

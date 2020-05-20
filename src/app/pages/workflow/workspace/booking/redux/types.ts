@@ -1,4 +1,4 @@
-import {BookDate, ErrorState} from "../../../../../shared/store/types";
+import {BookDate} from "../../../../../shared/store/types";
 import {LogoutAction} from "../../../../login/redux/types";
 
 export const LOAD_BOOKINGS = 'LOAD_BOOKINGS';
@@ -11,8 +11,7 @@ export interface Booking {
 }
 
 export interface BookingState {
-    bookings: Booking [],
-    error: ErrorState | null
+    bookings: Booking []
 }
 
 export interface LoadBookingAction {
@@ -24,9 +23,4 @@ export interface LoadBookingSuccessAction {
     payload: BookingState
 }
 
-export interface LoadBookingFailureAction {
-    type: typeof LOAD_BOOKINGS_FAILURE,
-    payload: { error: ErrorState }
-}
-
-export type BookingActionTypes = LoadBookingAction | LoadBookingSuccessAction | LoadBookingFailureAction | LogoutAction
+export type BookingActionTypes = LoadBookingAction | LoadBookingSuccessAction | LogoutAction

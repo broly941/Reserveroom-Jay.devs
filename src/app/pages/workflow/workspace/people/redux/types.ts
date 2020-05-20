@@ -1,4 +1,3 @@
-import {ErrorState} from "../../../../../shared/store/types";
 import {LogoutAction} from "../../../../login/redux/types";
 
 export const LOAD_PEOPLE = 'LOAD_PEOPLE';
@@ -13,8 +12,7 @@ export interface People {
 }
 
 export interface PeopleState {
-    people: People [],
-    error: ErrorState | null
+    people: People []
 }
 
 export interface LoadPeopleAction {
@@ -26,9 +24,4 @@ export interface LoadPeopleSuccessAction {
     payload: PeopleState
 }
 
-export interface LoadPeopleFailureAction {
-    type: typeof LOAD_PEOPLE_FAILURE,
-    payload: { error: ErrorState }
-}
-
-export type PeopleActionTypes = LoadPeopleAction | LoadPeopleSuccessAction | LoadPeopleFailureAction | LogoutAction
+export type PeopleActionTypes = LoadPeopleAction | LoadPeopleSuccessAction | LogoutAction

@@ -1,31 +1,21 @@
 import React, {useEffect, useState} from 'react';
-import {ErrorNotification} from "../../shared/components/error-notification/ErrorNotification";
 import {Titles} from "../../shared/constants/titles";
-import {State} from "../../shared/store";
-import {Dispatch} from "redux";
-import {hideNotification, login} from "./redux/login.actions";
-import {connect} from "react-redux";
-import {LoginState} from './redux/types';
+import {login} from "./redux/login.actions";
+import {useDispatch} from "react-redux";
 import {Link} from 'react-router-dom';
 import {AppRouts} from '../../shared/constants/route-config';
 
-interface ThisProps {
-    loginProps: LoginState,
-    login: (username: string, password: string) => void,
-    hideNotification: () => void
-}
-
-const LoginPage: React.FC<ThisProps> = ({loginProps, login, hideNotification}) => {
+export const LoginPage: React.FC = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        document.title = Titles.LOGIN_PAGE
+        document.title = Titles.LOGIN_PAGE;
     }, []);
 
     return (
         <section className="hero is-success is-fullheight has-background-light">
-            <ErrorNotification error={loginProps.error} hideNotification={hideNotification}/>
             <div className="hero-body">
                 <div className="container has-text-centered">
                     <div className="column is-4 is-offset-4">
@@ -55,7 +45,7 @@ const LoginPage: React.FC<ThisProps> = ({loginProps, login, hideNotification}) =
                                     </label>
                                 </div>
                                 <Link to={AppRouts.HOME} className="button is-block is-info is-large is-fullwidth"
-                                      onClick={() => login(username, password)}>Login
+                                      onClick={() => dispatch(login(username, password))}>Login
                                 </Link>
                             </form>
                         </div>
@@ -65,18 +55,3 @@ const LoginPage: React.FC<ThisProps> = ({loginProps, login, hideNotification}) =
         </section>
     )
 }
-
-const mapStateToProps = (state: State) => {
-    return {
-        loginProps: state.loginState,
-    }
-};
-
-const mapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        login: (username: string, password: string) => dispatch(login(username, password)),
-        hideNotification: () => dispatch(hideNotification()),
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import './WorkspacePage.scss';
-import BookingPage from './booking/BookingPage';
-import PeoplePage from './people/PeoplePage';
-import ReservePage from './reserve/ReservePage';
+import {BookingPage} from './booking/BookingPage';
+import {PeoplePage} from './people/PeoplePage';
+import {ReservePage} from './reserve/ReservePage';
 import {Route} from 'react-router-dom';
 import {AppRouts} from '../../../shared/constants/route-config';
 

@@ -1,4 +1,4 @@
-import {HIDE_NOTIFICATION, LOGIN, LoginActionTypes, LOGOUT} from "./types";
+import {LOGIN, LoginActionTypes, LOGOUT} from "./types";
 
 export const login = (username: string, password: string): LoginActionTypes => {
     return {
@@ -9,7 +9,3 @@ export const login = (username: string, password: string): LoginActionTypes => {
         }
     };
 };
-
-export const logout = (): LoginActionTypes => ({type: LOGOUT});
-
-export const hideNotification = (): LoginActionTypes => ({type: HIDE_NOTIFICATION});

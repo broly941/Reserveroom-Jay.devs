@@ -1,4 +1,4 @@
-import {BookDate, ErrorState} from "../../../../../shared/store/types";
+import {BookDate} from "../../../../../shared/store/types";
 
 export const LOAD_ROOMS = 'LOAD_ROOMS';
 export const LOAD_ROOMS_SUCCESS = 'LOAD_ROOMS_SUCCESS';
@@ -14,8 +14,7 @@ export interface Room {
 }
 
 export interface ReserveState {
-    rooms: Room[],
-    error: ErrorState | null
+    rooms: Room[]
 }
 
 export interface LoadRoomsAction {
@@ -25,11 +24,6 @@ export interface LoadRoomsAction {
 export interface LoadRoomsSuccessAction {
     type: typeof LOAD_ROOMS_SUCCESS,
     payload: ReserveState;
-}
-
-export interface LoadRoomsFailureAction {
-    type: typeof LOAD_ROOMS_FAILURE,
-    payload: { error: ErrorState }
 }
 
 export interface ReserveRoomAction {
@@ -45,15 +39,8 @@ export interface ReserveRoomSuccessAction {
     payload: ReserveState;
 }
 
-export interface ReserveRoomFailureAction {
-    type: typeof RESERVE_ROOM_FAILURE,
-    payload: { error: ErrorState }
-}
-
 export type ReserveActionTypes =
     LoadRoomsAction
     | LoadRoomsSuccessAction
-    | LoadRoomsFailureAction
     | ReserveRoomAction
     | ReserveRoomSuccessAction
-    | ReserveRoomFailureAction

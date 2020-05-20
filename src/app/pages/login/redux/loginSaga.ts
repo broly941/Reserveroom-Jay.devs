@@ -1,9 +1,10 @@
 import {call, put, takeEvery, takeLatest} from 'redux-saga/effects'
 import {loginService} from './LoginService';
-import {LOGIN, LOGIN_FAILURE, LoginAction, LOGOUT} from './types';
+import {LOGIN, LoginAction, LOGOUT} from './types';
 import {peopleService} from '../../workflow/workspace/people/redux/PeopleService';
 import {localStorageUtil} from '../../../shared/utils/StorageUtils';
 import {StorageKeys} from '../../../shared/constants/storage-keys';
+import {SHOW_ERROR} from '../../../components/error-notification/redux/types';
 
 function* login(action: LoginAction) {
     try {
@@ -19,8 +20,9 @@ function* login(action: LoginAction) {
         let error = e.response.data.error;
         console.error(status, error);
         yield put({
-            type: LOGIN_FAILURE,
+            type: SHOW_ERROR,
             payload: {
+                isExists: true,
                 error: {
                     code: status + ' ' + error,
                     message: e.response.data.message

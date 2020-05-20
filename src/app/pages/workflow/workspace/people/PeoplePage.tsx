@@ -1,15 +1,11 @@
 import * as React from 'react';
 import {State} from "../../../../shared/store";
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import {People} from "./redux/types";
-import {ErrorState} from '../../../../shared/store/types';
 
-interface ThisProps {
-    people: People [],
-    error: ErrorState | null
-}
+export const PeoplePage: React.FC = () => {
 
-const PeoplePage: React.FC<ThisProps> = ({people, error}) => {
+    const people = useSelector((state: State) => state.peopleState.people)
     const initiatePeopleTable = () => {
         return (
             <table className="table">
@@ -50,12 +46,3 @@ const PeoplePage: React.FC<ThisProps> = ({people, error}) => {
         </section>
     );
 }
-
-const mapStateToProps = (state: State) => {
-    return {
-        people: state.peopleState.people,
-        error: state.peopleState.error
-    }
-};
-
-export default connect(mapStateToProps)(PeoplePage);

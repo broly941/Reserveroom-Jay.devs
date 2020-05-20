@@ -1,9 +1,7 @@
-import {LOAD_PEOPLE_FAILURE, LOAD_PEOPLE_SUCCESS, PeopleActionTypes, PeopleState} from "./types";
-import {LOGOUT} from "../../../../login/redux/types";
+import {LOAD_PEOPLE_SUCCESS, PeopleActionTypes, PeopleState} from "./types";
 
 const initialState: PeopleState = {
-    people: [],
-    error: null
+    people: []
 };
 
 export function peopleReducer(state: PeopleState = initialState, action: PeopleActionTypes): PeopleState {
@@ -13,16 +11,6 @@ export function peopleReducer(state: PeopleState = initialState, action: PeopleA
                 ...state,
                 ...action.payload
             };
-        case LOAD_PEOPLE_FAILURE:
-            return {
-                ...state,
-                ...action.payload
-            };
-        case LOGOUT:
-            return {
-                ...state,
-                ...initialState
-            }
         default:
             return state;
     }

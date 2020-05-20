@@ -1,31 +1,26 @@
 import * as React from 'react';
 import {useState} from 'react';
 import {State} from '../../../../shared/store';
-import {connect} from 'react-redux';
-import {ReserveState, Room} from './redux/types';
-import {Dispatch} from 'redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {Room} from './redux/types';
 import {reserveRoom} from './redux/reserve.actions';
-import {BookDate} from '../../../../shared/store/types';
 import {Link} from 'react-router-dom';
 import {AppRouts} from '../../../../shared/constants/route-config';
 
-interface ThisProps {
-    reserveProps: ReserveState,
-    reserveRoom: (roomId: number, date: BookDate) => void
-}
-
-const ReservePage: React.FC<ThisProps> = ({reserveProps, reserveRoom}) => {
+export const ReservePage: React.FC = () => {
     const [selectedRoom, selectRoom] = useState(-1);
     const [selectedDate, setDate] = useState({
         startDate: new Date(),
         finishDate: new Date()
     });
+    const rooms = useSelector((state: State) => state.reserveState.rooms);
+    const dispatch = useDispatch();
 
     const initiateRoomTable = () => {
         return (
             <table className="table is-hoverable is-fullwidth">
                 {
-                    reserveProps.rooms.map((room: Room, index: number) => {
+                    rooms.map((room: Room, index: number) => {
                         return (
                             <tbody key={index}>
                             <tr onClick={() => selectRoom(room.roomId)}
@@ -65,24 +60,9 @@ const ReservePage: React.FC<ThisProps> = ({reserveProps, reserveRoom}) => {
                                })}/>
                     </div>
                     <Link to={AppRouts.BOOKING} className="button is-block is-dark is-medium is-fullwidth"
-                          onClick={() => reserveRoom(selectedRoom, selectedDate)}>Reserve room</Link>
+                          onClick={() => dispatch(reserveRoom(selectedRoom, selectedDate))}>Reserve room</Link>
                 </div>
             </div>
         </section>
     );
 }
-
-const mapStateToProps = (state: State) => {
-    return {
-        loginProps: state.loginState,
-        reserveProps: state.reserveState
-    }
-};
-
-const mapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        reserveRoom: (roomId: number, date: BookDate) => dispatch(reserveRoom(roomId, date))
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ReservePage);
