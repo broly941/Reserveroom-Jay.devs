@@ -1,12 +1,13 @@
 import React from 'react';
 import {Redirect, Route} from 'react-router-dom';
 import {AppRouts} from '../../constants/route-config';
-import {StorageKeys} from '../../constants/storage-keys';
-import {localStorageUtil} from '../../utils/StorageUtils';
+import {useSelector} from 'react-redux';
+import {State} from '../../store';
 
 const PrivateRoute = ({component, ...rest}: any) => {
+    const loggeId = useSelector((state: State) => state.loginState.loggedIn)
     const routeComponent = (props: any) => (
-        localStorageUtil.get(StorageKeys.LOGGED_IN) ? React.createElement(component, props)
+        loggeId ? React.createElement(component, props)
             : <Redirect to={{pathname: AppRouts.LOGIN}}/>
     );
     return <Route {...rest} render={routeComponent}/>;

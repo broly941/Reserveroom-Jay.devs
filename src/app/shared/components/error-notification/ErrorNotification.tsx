@@ -2,7 +2,7 @@ import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {hideNotification} from './redux/error.notification.actions';
 import './ErrorNotification.scss';
-import {State} from '../../shared/store';
+import {State} from '../../store';
 
 export const ErrorNotification: React.FC = () => {
     const dispatch = useDispatch();
