@@ -17,40 +17,40 @@ import {reducers} from './app/shared/store';
 import logger from 'redux-logger';
 // import '../../../../bulma-debug.css';
 
-const sagaMiddleware = createSagaMiddleware();
-const store = createStore(
-    reducers,
-    applyMiddleware(sagaMiddleware, logger)
-);
-sagaMiddleware.run(sagas)
+// const sagaMiddleware = createSagaMiddleware();
+// const store = createStore(
+//     reducers,
+//     applyMiddleware(sagaMiddleware, logger)
+// );
+// sagaMiddleware.run(sagas)
 
-// const todoSlice = createSlice({
-//     name: "todo",
-//     initialState: {
-//         todos: []
-//     },
-//     reducers: {
-//         fetchData: (state, action) => {
-//             return {
-//                 todos: action.payload
-//             };
-//         }
-//     }
-// });
-//
-// export const {fetchData} = todoSlice.actions;
-//
-// let sagaMiddleware = createSagaMiddleware();
-// const middleware = [...getDefaultMiddleware({thunk: false}), sagaMiddleware];
-//
-// const store = configureStore({
-//     reducer: {
-//         todo: todoSlice.reducer
-//     },
-//     middleware
-// });
-//
-// sagaMiddleware.run(sagas);
+const todoSlice = createSlice({
+    name: "todo",
+    initialState: {
+        todos: []
+    },
+    reducers: {
+        fetchData: (state, action) => {
+            return {
+                todos: action.payload
+            };
+        }
+    }
+});
+
+export const {fetchData} = todoSlice.actions;
+
+let sagaMiddleware = createSagaMiddleware();
+const middleware = [...getDefaultMiddleware({thunk: false}), sagaMiddleware];
+
+const store = configureStore({
+    reducer: {
+        todo: todoSlice.reducer
+    },
+    middleware
+});
+
+sagaMiddleware.run(sagas);
 
 ReactDOM.render(
     <Provider store={store}>
