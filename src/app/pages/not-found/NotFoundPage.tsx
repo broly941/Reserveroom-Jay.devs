@@ -6,7 +6,6 @@ export const NotFoundPage: React.FC = () => {
     useEffect(() => {
         document.title = Titles.PAGE_NOT_FOUND
     }, []);
-
     return (
         <section className="section is-large">
             <div className="container">

@@ -1,8 +1,8 @@
 import axios from "axios";
-import {ReserveroomEndpoints} from "../../../../../shared/constants/urls";
-import {BookDate} from "../../../../../shared/store/types";
-import {StorageKeys} from '../../../../../shared/constants/storage-keys';
-import {localStorageUtil} from '../../../../../shared/utils/StorageUtils';
+import {ReserveroomEndpoints} from "../../../../shared/constants/urls";
+import {BookDate} from "../../../../shared/store/types";
+import {StorageKeys} from '../../../../shared/constants/storage-keys';
+import {localStorageUtil} from '../../../../shared/utils/StorageUtils';
 
 class ReserveService {
 

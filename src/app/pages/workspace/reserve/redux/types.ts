@@ -1,4 +1,4 @@
-import {BookDate} from "../../../../../shared/store/types";
+import {BookDate} from "../../../../shared/store/types";
 
 export const LOAD_ROOMS = 'LOAD_ROOMS';
 export const LOAD_ROOMS_SUCCESS = 'LOAD_ROOMS_SUCCESS';
@@ -23,7 +23,7 @@ export interface LoadRoomsAction {
 
 export interface LoadRoomsSuccessAction {
     type: typeof LOAD_ROOMS_SUCCESS,
-    payload: ReserveState;
+    payload: Room[];
 }
 
 export interface ReserveRoomAction {

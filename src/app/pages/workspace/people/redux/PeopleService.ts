@@ -1,7 +1,7 @@
 import axios from "axios";
-import {PeopleEndpoints} from "../../../../../shared/constants/urls";
-import {StorageKeys} from '../../../../../shared/constants/storage-keys';
-import {localStorageUtil} from '../../../../../shared/utils/StorageUtils';
+import {PeopleEndpoints} from "../../../../shared/constants/urls";
+import {StorageKeys} from '../../../../shared/constants/storage-keys';
+import {localStorageUtil} from '../../../../shared/utils/StorageUtils';
 
 class PeopleService {
 

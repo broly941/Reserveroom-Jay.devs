@@ -1,7 +1,6 @@
 export const LOGOUT = 'LOGOUT';
 export const LOGIN = 'LOGIN';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
 export interface LoginState {
     loggedIn: boolean,
@@ -26,8 +25,4 @@ export interface LoginSuccessAction {
     payload: LoginState
 }
 
-export interface LoginFailureAction {
-    type: typeof LOGIN_FAILURE
-}
-
-export type LoginActionTypes = LoginAction | LoginSuccessAction | LoginFailureAction | LogoutAction
+export type LoginActionTypes = LoginAction | LoginSuccessAction | LogoutAction

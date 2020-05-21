@@ -1,14 +1,13 @@
 import * as React from 'react';
-import {State} from "../../../../shared/store";
-import {connect, useSelector} from "react-redux";
+import {State} from "../../../shared/store";
+import {useSelector} from "react-redux";
 import {People} from "./redux/types";
 
-export const PeoplePage: React.FC = () => {
-
-    const people = useSelector((state: State) => state.peopleState.people)
+const useService = () => {
+    const people = useSelector((state: State) => state.peopleState.people);
     const initiatePeopleTable = () => {
         return (
-            <table className="table">
+            <table className="table is-hoverable">
                 <thead>
                 <tr>
                     <th>#</th>
@@ -33,7 +32,11 @@ export const PeoplePage: React.FC = () => {
             </table>
         );
     };
+    return {initiatePeopleTable};
+};
 
+export const PeoplePage: React.FC = () => {
+    const {initiatePeopleTable} = useService();
     return (
         <section className="hero is-large">
             <div className="hero-body">

@@ -1,21 +1,21 @@
 import * as React from 'react';
 import {useState} from 'react';
-import {State} from '../../../../shared/store';
+import {State} from '../../../shared/store';
 import {useDispatch, useSelector} from 'react-redux';
 import {Room} from './redux/types';
 import {reserveRoom} from './redux/reserve.actions';
 import {Link} from 'react-router-dom';
-import {AppRouts} from '../../../../shared/constants/route-config';
+import {AppRouts} from '../../../shared/constants/route-config';
 
-export const ReservePage: React.FC = () => {
+const useService = () => {
+    const dispatch = useDispatch();
+    const rooms = useSelector((state: State) => state.reserveState.rooms);
     const [selectedRoom, selectRoom] = useState(-1);
     const [selectedDate, setDate] = useState({
         startDate: new Date(),
         finishDate: new Date()
     });
-    const rooms = useSelector((state: State) => state.reserveState.rooms);
-    const dispatch = useDispatch();
-
+    const defaultDate = JSON.stringify(new Date()).slice(1, 17);
     const initiateRoomTable = () => {
         return (
             <table className="table is-hoverable is-fullwidth">
@@ -33,9 +33,11 @@ export const ReservePage: React.FC = () => {
             </table>
         );
     };
+    return {dispatch, selectedRoom, selectRoom, selectedDate, setDate, defaultDate, initiateRoomTable};
+};
 
-    const date = JSON.stringify(new Date()).slice(1, 17);
-    debugger;
+export const ReservePage: React.FC = () => {
+    const {dispatch, selectedRoom, selectedDate, setDate, defaultDate, initiateRoomTable} = useService();
     return (
         <section className="section is-large">
             <div className="container has-text-centered">
@@ -47,13 +49,13 @@ export const ReservePage: React.FC = () => {
                     </div>
                     <div className="container has-text-left">
                         <label className="label">Start date</label>
-                        <input type="datetime-local" className="input" defaultValue={date}
+                        <input type="datetime-local" className="input" defaultValue={defaultDate}
                                onChange={event => setDate({
                                    ...selectedDate,
                                    startDate: new Date(event.target.value)
                                })}/>
                         <label className="label">Finish date</label>
-                        <input type="datetime-local" className="input" defaultValue={date}
+                        <input type="datetime-local" className="input" defaultValue={defaultDate}
                                onChange={event => setDate({
                                    ...selectedDate,
                                    finishDate: new Date(event.target.value)

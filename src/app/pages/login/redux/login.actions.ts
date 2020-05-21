@@ -1,12 +1,47 @@
-import {LOGIN, LoginActionTypes, LOGOUT} from "./types";
-import {createAction} from '@reduxjs/toolkit';
+import {LOGIN_SUCCESS, LoginActionTypes, LOGOUT} from "./types";
+import {StorageKeys} from '../../../shared/constants/storage-keys';
+import {Action, ThunkAction} from '@reduxjs/toolkit';
+import {loginService} from './LoginService';
+import {State} from '../../../shared/store';
+import {localStorageUtil} from '../../../shared/utils/StorageUtils';
+import {peopleService} from '../../workspace/people/redux/PeopleService';
+import {showError} from '../../../shared/components/error-notification/redux/error.notification.actions';
 
-export const login = (username: string, password: string): LoginActionTypes => {
+export const login = (username: string, password: string):
+    ThunkAction<void, State, unknown, Action<string>> => async dispatch => {
+    try {
+        const authResponse = await loginService.loggedIn(username, password);
+        let token = authResponse.data.token;
+        localStorageUtil.put(StorageKeys.TOKEN, token);
+        const userInfoResponse = await peopleService.loadUserInfo(username);
+        dispatch(loginSuccess(true, token, userInfoResponse.data.userId));
+    } catch (e) {
+        let status = e.response.data.status;
+        let error = e.response.data.error;
+        console.error(status, error);
+        dispatch(showError({
+            isExists: true,
+            error: {
+                code: status + ' ' + error,
+                message: 'Login Error. ' + e.response.data.message
+            }
+        }));
+    }
+}
+
+export const loginSuccess = (loggedIn: boolean, token: string, userId: number): LoginActionTypes => {
     return {
-        type: LOGIN,
+        type: LOGIN_SUCCESS,
         payload: {
-            username: username,
-            password: password
+            loggedIn: loggedIn,
+            token: token,
+            userId: userId
         }
+    };
+};
+
+export const logout = (): LoginActionTypes => {
+    return {
+        type: LOGOUT,
     };
 };

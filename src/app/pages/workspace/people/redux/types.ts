@@ -1,8 +1,7 @@
-import {LogoutAction} from "../../../../login/redux/types";
+import {LogoutAction} from "../../../login/redux/types";
 
 export const LOAD_PEOPLE = 'LOAD_PEOPLE';
 export const LOAD_PEOPLE_SUCCESS = 'LOAD_PEOPLE_SUCCESS';
-export const LOAD_PEOPLE_FAILURE = 'LOAD_PEOPLE_FAILURE';
 
 export interface People {
     userId: number,
@@ -21,7 +20,7 @@ export interface LoadPeopleAction {
 
 export interface LoadPeopleSuccessAction {
     type: typeof LOAD_PEOPLE_SUCCESS,
-    payload: PeopleState
+    payload: People []
 }
 
 export type PeopleActionTypes = LoadPeopleAction | LoadPeopleSuccessAction | LogoutAction

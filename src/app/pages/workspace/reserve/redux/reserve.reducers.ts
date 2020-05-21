@@ -1,4 +1,4 @@
-import {LOAD_ROOMS_FAILURE, LOAD_ROOMS_SUCCESS, ReserveActionTypes, ReserveState} from "./types";
+import {LOAD_ROOMS_SUCCESS, ReserveActionTypes, ReserveState} from "./types";
 
 const initialState: ReserveState = {
     rooms: []
@@ -9,7 +9,7 @@ export function reserveReducer(state: ReserveState = initialState, action: Reser
         case LOAD_ROOMS_SUCCESS:
             return {
                 ...state,
-                ...action.payload
+                rooms: action.payload
             };
         default:
             return state;

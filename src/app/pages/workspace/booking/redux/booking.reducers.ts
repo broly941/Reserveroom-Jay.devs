@@ -1,5 +1,4 @@
 import {BookingActionTypes, BookingState, LOAD_BOOKINGS_SUCCESS} from "./types";
-import {LOGOUT} from "../../../../login/redux/types";
 
 const initialState: BookingState = {
     bookings: []
@@ -10,7 +9,7 @@ export function bookingReducer(state: BookingState = initialState, action: Booki
         case LOAD_BOOKINGS_SUCCESS:
             return {
                 ...state,
-                ...action.payload
+                bookings: action.payload
             };
         default:
             return state;

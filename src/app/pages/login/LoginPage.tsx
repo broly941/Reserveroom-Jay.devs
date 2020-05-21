@@ -2,18 +2,19 @@ import React, {useEffect, useState} from 'react';
 import {Titles} from "../../shared/constants/titles";
 import {login} from "./redux/login.actions";
 import {useDispatch} from "react-redux";
-import {Link} from 'react-router-dom';
-import {AppRouts} from '../../shared/constants/route-config';
 
-export const LoginPage: React.FC = () => {
+const useService = () => {
+    const dispatch = useDispatch();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const dispatch = useDispatch();
+    return {dispatch, username, setUsername, password, setPassword};
+};
 
+export const LoginPage: React.FC = () => {
     useEffect(() => {
         document.title = Titles.LOGIN_PAGE;
     }, []);
-
+    const {dispatch, username, setUsername, password, setPassword} = useService();
     return (
         <section className="hero is-success is-fullheight has-background-light">
             <div className="hero-body">
@@ -44,9 +45,9 @@ export const LoginPage: React.FC = () => {
                                         &nbsp;&nbsp;Remember me
                                     </label>
                                 </div>
-                                <Link to={AppRouts.HOME} className="button is-block is-info is-large is-fullwidth"
-                                      onClick={() => dispatch(login(username, password))}>Login
-                                </Link>
+                                <div className="button is-block is-info is-large is-fullwidth"
+                                     onClick={() => dispatch(login(username, password))}>Login
+                                </div>
                             </form>
                         </div>
                     </div>

@@ -9,7 +9,7 @@ export function peopleReducer(state: PeopleState = initialState, action: PeopleA
         case LOAD_PEOPLE_SUCCESS:
             return {
                 ...state,
-                ...action.payload
+                people: action.payload
             };
         default:
             return state;

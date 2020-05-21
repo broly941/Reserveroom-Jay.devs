@@ -1,14 +1,18 @@
 import * as React from 'react';
-import {State} from "../../../../shared/store";
+import {State} from "../../../shared/store";
 import {useSelector} from "react-redux";
 import {Booking} from "./redux/types";
 
-export const BookingPage: React.FC = () => {
+const useService = () => {
     const bookings = useSelector((state: State) => state.bookingState.bookings);
+    return {bookings};
+};
 
+export const BookingPage: React.FC = () => {
+    const {bookings} = useService();
     const initiateBookingTable = () => {
         return (
-            <table className="table">
+            <table className="table is-hoverable">
                 <thead>
                 <tr>
                     <th>#</th>
@@ -33,7 +37,6 @@ export const BookingPage: React.FC = () => {
             </table>
         );
     };
-
     return (
         <section className="hero is-large">
             <div className="hero-body">
