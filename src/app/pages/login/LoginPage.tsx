@@ -4,8 +4,8 @@ import {useDispatch} from "react-redux";
 
 const useService = () => {
     const dispatch = useDispatch();
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
     return {dispatch, username, setUsername, password, setPassword};
 };
 

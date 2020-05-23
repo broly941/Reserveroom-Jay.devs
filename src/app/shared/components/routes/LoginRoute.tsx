@@ -5,14 +5,14 @@ import {State} from '../../store';
 import {AppRouts} from '../../constants/route-config';
 
 const useService = () => {
-    const loggeId = useSelector((state: State) => state.loginState.loggedIn);
-    return {loggeId};
+    const loggedIn: boolean = useSelector((state: State) => state.loginState.loggedIn);
+    return {loggedIn};
 };
 
 export const LoginRoute = ({component, ...rest}: any) => {
-    const {loggeId} = useService();
+    const {loggedIn} = useService();
     const routeComponent = (props: any) => (
-        !loggeId ? React.createElement(component, props)
+        !loggedIn ? React.createElement(component, props)
             : <Redirect to={{pathname: AppRouts.HOME}}/>
     );
     return <Route {...rest} render={routeComponent}/>;

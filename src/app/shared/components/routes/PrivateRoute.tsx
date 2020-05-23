@@ -5,14 +5,14 @@ import {useSelector} from 'react-redux';
 import {State} from '../../store';
 
 const useService = () => {
-    const loggeId = useSelector((state: State) => state.loginState.loggedIn);
-    return {loggeId};
+    const loggedIn: boolean = useSelector((state: State) => state.loginState.loggedIn);
+    return {loggedIn};
 };
 
 export const PrivateRoute = ({component, ...rest}: any) => {
-    const {loggeId} = useService();
+    const {loggedIn} = useService();
     const routeComponent = (props: any) => (
-        loggeId ? React.createElement(component, props)
+        loggedIn ? React.createElement(component, props)
             : <Redirect to={{pathname: AppRouts.LOGIN}}/>
     );
     return <Route {...rest} render={routeComponent}/>;

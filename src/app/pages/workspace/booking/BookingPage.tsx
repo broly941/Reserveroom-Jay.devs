@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import {Booking} from "./redux/types";
 
 const useService = () => {
-    const bookings = useSelector((state: State) => state.bookingState.bookings);
+    const bookings: Booking[] = useSelector((state: State) => state.bookingState.bookings);
     return {bookings};
 };
 

@@ -1,4 +1,4 @@
-import {LOAD_PEOPLE_SUCCESS, People, PeopleActionTypes} from "./types";
+import {LOAD_PEOPLE_SUCCESS, Person, PeopleActionTypes} from "./types";
 import {peopleService} from './PeopleService';
 import {AppThunk} from '../../../../shared/store';
 import {showError} from '../../../../shared/components/error-notification/redux/error.notification.actions';
@@ -6,7 +6,7 @@ import {showError} from '../../../../shared/components/error-notification/redux/
 export const loadPeople = (): AppThunk => async dispatch => {
     try {
         const peopleResponse = await peopleService.loadPeople();
-        let people: People[] = peopleResponse.data.map((person: any) => {
+        let people: Person[] = peopleResponse.data.map((person: any) => {
             return {
                 username: person.userName,
                 email: person.email,
@@ -28,7 +28,7 @@ export const loadPeople = (): AppThunk => async dispatch => {
     }
 };
 
-export const loadPeopleSuccess = (people: People[]): PeopleActionTypes => {
+export const loadPeopleSuccess = (people: Person[]): PeopleActionTypes => {
     return {
         type: LOAD_PEOPLE_SUCCESS,
         payload: people

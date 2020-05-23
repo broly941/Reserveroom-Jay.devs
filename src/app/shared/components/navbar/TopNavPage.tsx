@@ -2,9 +2,9 @@ import * as React from 'react';
 import './TopNavPage.scss';
 import {TopNavLogo} from "./logo/TopNavLogo";
 import {Link} from "react-router-dom";
-import {AppRouts} from '../../../shared/constants/route-config';
+import {AppRouts} from '../../constants/route-config';
 import {useDispatch, useSelector} from 'react-redux';
-import {State} from '../../../shared/store';
+import {State} from '../../store';
 import {loadRooms} from '../../../pages/workspace/reserve/redux/reserve.actions';
 import {loadBookings} from '../../../pages/workspace/booking/redux/booking.actions';
 import {loadPeople} from '../../../pages/workspace/people/redux/people.actions';
@@ -12,8 +12,8 @@ import {logout} from '../../../pages/login/redux/login.actions';
 
 const useService = () => {
     const dispatch = useDispatch();
-    const userId = useSelector((state: State) => state.loginState.userId);
-    const username = useSelector((state: State) => state.loginState.username);
+    const userId: number = useSelector((state: State) => state.loginState.userId);
+    const username: string = useSelector((state: State) => state.loginState.username);
     return {dispatch, userId, username};
 };
 

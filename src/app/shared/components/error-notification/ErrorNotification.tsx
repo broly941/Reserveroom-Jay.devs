@@ -3,10 +3,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import {hideNotification} from './redux/error.notification.actions';
 import './ErrorNotification.scss';
 import {State} from '../../store';
+import {ErrorState} from './redux/types';
 
 const useService = () => {
     const dispatch = useDispatch();
-    const errorProps = useSelector((state: State) => state.errorState);
+    const errorProps: ErrorState = useSelector((state: State) => state.errorState);
     return {dispatch, errorProps};
 };
 

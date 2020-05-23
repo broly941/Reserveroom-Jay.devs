@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {State} from "../../../shared/store";
 import {useSelector} from "react-redux";
-import {People} from "./redux/types";
+import {Person} from "./redux/types";
 
 const useService = () => {
-    const people = useSelector((state: State) => state.peopleState.people);
+    const people: Person[] = useSelector((state: State) => state.peopleState.people);
     const initiatePeopleTable = () => {
         return (
             <table className="table is-hoverable">
@@ -17,7 +17,7 @@ const useService = () => {
                 </tr>
                 </thead>
                 {
-                    people.map((person: People, index: number) => {
+                    people.map((person: Person, index: number) => {
                         return (
                             <tbody key={index}>
                             <tr>

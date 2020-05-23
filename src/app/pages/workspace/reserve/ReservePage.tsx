@@ -6,16 +6,17 @@ import {Room} from './redux/types';
 import {reserveRoom} from './redux/reserve.actions';
 import {Link} from 'react-router-dom';
 import {AppRouts} from '../../../shared/constants/route-config';
+import {BookDate} from '../../../shared/store/types';
 
 const useService = () => {
     const dispatch = useDispatch();
-    const rooms = useSelector((state: State) => state.reserveState.rooms);
-    const [selectedRoom, selectRoom] = useState(-1);
-    const [selectedDate, setDate] = useState({
+    const rooms: Room[] = useSelector((state: State) => state.reserveState.rooms);
+    const [selectedRoom, selectRoom] = useState<number>(-1);
+    const [selectedDate, setDate] = useState<BookDate>({
         startDate: new Date(),
         finishDate: new Date()
     });
-    const defaultDate = JSON.stringify(new Date()).slice(1, 17);
+    const defaultDate: string = JSON.stringify(new Date()).slice(1, 17);
     const initiateRoomTable = () => {
         return (
             <table className="table is-hoverable is-fullwidth">
