@@ -1,13 +1,13 @@
 import axios from "axios";
-import {PeopleEndpoints} from "../../../../shared/constants/urls";
-import {StorageKeys} from '../../../../shared/constants/storage-keys';
-import {localStorageUtil} from '../../../../shared/utils/StorageUtils';
+import {localStorageUtil, StorageKeys} from '../../../../shared/utils/StorageUtils';
+
+const LOAD_PEOPLE = 'http://localhost:8080/api/users';
+const LOAD_USER_INFO = 'http://localhost:8080/api/users/{username}';
 
 class PeopleService {
-
     loadPeople = () => {
         const authToken = 'Bearer ' + localStorageUtil.get(StorageKeys.TOKEN);
-        return axios.get(PeopleEndpoints.LOAD_PEOPLE, {
+        return axios.get(LOAD_PEOPLE, {
             headers: {
                 Authorization: authToken
             }
@@ -16,7 +16,7 @@ class PeopleService {
 
     loadUserInfo = (username: string) => {
         const authToken = 'Bearer ' + localStorageUtil.get(StorageKeys.TOKEN);
-        return axios.get(PeopleEndpoints.LOAD_USER_INFO.replace('{username}', username), {
+        return axios.get(LOAD_USER_INFO.replace('{username}', username), {
             headers: {
                 Authorization: authToken
             }

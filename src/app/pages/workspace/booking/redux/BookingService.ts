@@ -1,13 +1,12 @@
 import axios from "axios";
-import {BookingEndpoints} from "../../../../shared/constants/urls";
-import {StorageKeys} from '../../../../shared/constants/storage-keys';
-import {localStorageUtil} from '../../../../shared/utils/StorageUtils';
+import {localStorageUtil, StorageKeys} from '../../../../shared/utils/StorageUtils';
+
+const LOAD_BOOKING = 'http://localhost:8080/api/events/user/{userId}';
 
 class BookingService {
-
     loadBookings = (userId: number) => {
         const authToken = 'Bearer ' + localStorageUtil.get(StorageKeys.TOKEN);
-        return axios.get(BookingEndpoints.LOAD_BOOKING.replace('{userId}', userId.toString()), {
+        return axios.get(LOAD_BOOKING.replace('{userId}', userId.toString()), {
             headers: {
                 Authorization: authToken
             }

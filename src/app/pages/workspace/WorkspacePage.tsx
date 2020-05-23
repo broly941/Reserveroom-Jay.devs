@@ -6,12 +6,11 @@ import {PeoplePage} from './people/PeoplePage';
 import {ReservePage} from './reserve/ReservePage';
 import {Route} from 'react-router-dom';
 import {TopNavPage} from '../../shared/components/navbar/TopNavPage';
-import {Titles} from '../../shared/constants/titles';
 import {AppRouts} from '../../shared/constants/route-config';
 
 export const WorkspacePage: React.FC = () => {
     useEffect(() => {
-        document.title = Titles.WORKSPACE
+        document.title = 'WORKSPACE'
     }, []);
     return (
         <div>

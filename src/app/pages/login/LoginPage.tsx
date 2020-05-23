@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {Titles} from "../../shared/constants/titles";
 import {login} from "./redux/login.actions";
 import {useDispatch} from "react-redux";
 
@@ -12,7 +11,7 @@ const useService = () => {
 
 export const LoginPage: React.FC = () => {
     useEffect(() => {
-        document.title = Titles.LOGIN_PAGE;
+        document.title = 'Sign In';
     }, []);
     const {dispatch, username, setUsername, password, setPassword} = useService();
     return (

@@ -1,3 +1,8 @@
+export enum StorageKeys {
+    TOKEN = 'TOKEN',
+    USER_ID = 'USER_ID',
+}
+
 class StorageUtils {
     constructor(public storage: Storage) {
     }

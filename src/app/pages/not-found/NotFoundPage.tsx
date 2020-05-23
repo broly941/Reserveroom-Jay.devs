@@ -1,10 +1,9 @@
 import * as React from 'react';
 import {useEffect} from 'react';
-import {Titles} from "../../shared/constants/titles";
 
 export const NotFoundPage: React.FC = () => {
     useEffect(() => {
-        document.title = Titles.PAGE_NOT_FOUND
+        document.title = 'Page Not Found'
     }, []);
     return (
         <section className="section is-large">

@@ -1,9 +1,8 @@
 import {LOGIN_SUCCESS, LoginActionTypes, LOGOUT} from "./types";
-import {StorageKeys} from '../../../shared/constants/storage-keys';
 import {Action, ThunkAction} from '@reduxjs/toolkit';
 import {loginService} from './LoginService';
 import {State} from '../../../shared/store';
-import {localStorageUtil} from '../../../shared/utils/StorageUtils';
+import {localStorageUtil, StorageKeys} from '../../../shared/utils/StorageUtils';
 import {peopleService} from '../../workspace/people/redux/PeopleService';
 import {showError} from '../../../shared/components/error-notification/redux/error.notification.actions';
 

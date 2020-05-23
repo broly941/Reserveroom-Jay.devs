@@ -1,14 +1,14 @@
 import axios from "axios";
-import {ReserveroomEndpoints} from "../../../../shared/constants/urls";
 import {BookDate} from "../../../../shared/store/types";
-import {StorageKeys} from '../../../../shared/constants/storage-keys';
-import {localStorageUtil} from '../../../../shared/utils/StorageUtils';
+import {localStorageUtil, StorageKeys} from '../../../../shared/utils/StorageUtils';
+
+const LOAD_ROOMS = 'http://localhost:8080/api/rooms';
+const RESERVE_ROOM = 'http://localhost:8080/api/events';
 
 class ReserveService {
-
     loadRooms = () => {
         const authToken = 'Bearer ' + localStorageUtil.get(StorageKeys.TOKEN);
-        return axios.get(ReserveroomEndpoints.LOAD_ROOMS, {
+        return axios.get(LOAD_ROOMS, {
             headers: {
                 Authorization: authToken
             }
@@ -23,7 +23,7 @@ class ReserveService {
             finishTimeNumber: date.finishDate.getTime()
         };
         const authToken = 'Bearer ' + localStorageUtil.get(StorageKeys.TOKEN);
-        return axios.post(ReserveroomEndpoints.RESERVE_ROOM, data, {
+        return axios.post(RESERVE_ROOM, data, {
             headers: {
                 Authorization: authToken
             }

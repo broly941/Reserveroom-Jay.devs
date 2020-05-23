@@ -1,10 +1,10 @@
 import axios from "axios";
-import {AuthenticationEndpoints} from "../../../shared/constants/urls";
+
+const GET_TOKEN_URL = 'http://localhost:8080/api/authenticate';
 
 class LoginService {
-
     loggedIn = (username: string, password: string) => {
-        return axios.post(AuthenticationEndpoints.GET_TOKEN_URL, {username: username, password: password});
+        return axios.post(GET_TOKEN_URL, {username: username, password: password});
     };
 }
 
