@@ -6,6 +6,7 @@ import {bookingService} from './BookingService';
 export const loadBookings = (userId: number): AppThunk => async dispatch => {
     try {
         const bookingResponse = await bookingService.loadBookings(userId);
+        debugger;
         let bookings: Booking[] = bookingResponse.data.map((booking: any) => {
             return {
                 roomName: booking.room.name,

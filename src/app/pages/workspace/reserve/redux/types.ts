@@ -1,12 +1,7 @@
-import {BookDate} from "../../../../shared/store/types";
-
-export const LOAD_ROOMS = 'LOAD_ROOMS';
 export const LOAD_ROOMS_SUCCESS = 'LOAD_ROOMS_SUCCESS';
-export const LOAD_ROOMS_FAILURE = 'LOAD_ROOMS_FAILURE';
-export const RESERVE_ROOM = 'RESERVE_ROOM';
-export const RESERVE_ROOM_SUCCESS = 'RESERVE_ROOM_SUCCESS';
-export const RESERVE_ROOM_FAILURE = 'RESERVE_ROOM_FAILURE';
-
+export const SELECT_ROOM = 'SELECT_ROOM';
+export const SELECT_START_DATE = 'SELECT_START_DATE';
+export const SELECT_FINISH_DATE = 'SELECT_FINISH_DATE';
 
 export interface Room {
     roomId: number,
@@ -14,11 +9,10 @@ export interface Room {
 }
 
 export interface ReserveState {
-    rooms: Room[]
-}
-
-export interface LoadRoomsAction {
-    type: typeof LOAD_ROOMS
+    rooms: Room[],
+    selectedRoom: number,
+    selectedStartDate: number,
+    selectedFinishDate: number
 }
 
 export interface LoadRoomsSuccessAction {
@@ -26,21 +20,30 @@ export interface LoadRoomsSuccessAction {
     payload: Room[];
 }
 
-export interface ReserveRoomAction {
-    type: typeof RESERVE_ROOM,
+export interface SelectRoomAction {
+    type: typeof SELECT_ROOM,
     payload: {
-        roomId: number,
-        date: BookDate
-    }
+        roomId: number
+    };
 }
 
-export interface ReserveRoomSuccessAction {
-    type: typeof RESERVE_ROOM_SUCCESS,
-    payload: ReserveState;
+export interface SelectStartDateAction {
+    type: typeof SELECT_START_DATE,
+    payload: {
+        selectedStartDate: number
+    };
+}
+
+
+export interface SelectFinishDateAction {
+    type: typeof SELECT_FINISH_DATE,
+    payload: {
+        selectedFinishDate: number
+    };
 }
 
 export type ReserveActionTypes =
-    LoadRoomsAction
-    | LoadRoomsSuccessAction
-    | ReserveRoomAction
-    | ReserveRoomSuccessAction
+    LoadRoomsSuccessAction
+    | SelectRoomAction
+    | SelectStartDateAction
+    | SelectFinishDateAction

@@ -1,8 +1,12 @@
-import {BookDate} from "../../../../shared/store/types";
 import {LogoutAction} from "../../../login/redux/types";
 
 export const LOAD_BOOKINGS = 'LOAD_BOOKINGS';
 export const LOAD_BOOKINGS_SUCCESS = 'LOAD_BOOKINGS_SUCCESS';
+
+export interface BookDate {
+    startDate: number,
+    finishDate: number
+}
 
 export interface Booking {
     roomName: string,
