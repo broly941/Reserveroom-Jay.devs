@@ -8,7 +8,7 @@ import {LoginPage} from './app/pages/login/LoginPage';
 import {AppRouts} from './app/shared/constants/route-config';
 import {PrivateRoute} from './app/shared/components/routes/PrivateRoute';
 import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit';
-import {reducers} from './app/shared/store';
+import {rootReducer} from './app/shared/store';
 import {ErrorNotification} from './app/shared/components/error-notification/ErrorNotification';
 import {FooterPage} from './app/shared/components/footer/FooterPage';
 import logger from 'redux-logger';
@@ -17,7 +17,7 @@ import {WorkspacePage} from './app/pages/workspace/WorkspacePage';
 // import './bulma-debug.css';
 
 const middleware = [...getDefaultMiddleware(), logger];
-const store = configureStore({reducer: reducers, middleware});
+const store = configureStore({reducer: rootReducer, middleware});
 
 ReactDOM.render(
     <Provider store={store}>

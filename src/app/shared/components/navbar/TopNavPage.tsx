@@ -13,11 +13,12 @@ import {logout} from '../../../pages/login/redux/login.actions';
 const useService = () => {
     const dispatch = useDispatch();
     const userId = useSelector((state: State) => state.loginState.userId);
-    return {dispatch, userId};
+    const username = useSelector((state: State) => state.loginState.username);
+    return {dispatch, userId, username};
 };
 
 export const TopNavPage: React.FC = () => {
-    const {dispatch, userId} = useService();
+    const {dispatch, userId, username} = useService();
     return (
         <nav className="navbar is-fixed-top">
             <div className="container">
@@ -33,11 +34,11 @@ export const TopNavPage: React.FC = () => {
                               onClick={() => dispatch(loadPeople())}>People</Link>
                         <a className="navbar-item">Help</a>
                         <div className="navbar-item has-dropdown is-hoverable">
-                            <a className="navbar-link">Profile</a>
+                            <a className="navbar-link">{username}</a>
                             <div className="navbar-dropdown">
-                                <div className="navbar-item"
-                                     onClick={() => dispatch(logout())}>Logout
-                                </div>
+                                <a className="navbar-item"
+                                   onClick={() => dispatch(logout())}>Logout
+                                </a>
                             </div>
                         </div>
                     </div>

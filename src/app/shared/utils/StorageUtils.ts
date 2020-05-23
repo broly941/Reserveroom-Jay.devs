@@ -6,6 +6,7 @@ export enum StorageKeys {
 class StorageUtils {
     constructor(public storage: Storage) {
     }
+
     put = (key: string, value: any) => {
         value instanceof Object ? this.storage.setItem(key, JSON.stringify(value)) : this.storage.setItem(key, value);
     };

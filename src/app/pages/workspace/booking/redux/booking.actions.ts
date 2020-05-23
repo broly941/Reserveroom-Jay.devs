@@ -1,11 +1,9 @@
 import {Booking, BookingActionTypes, LOAD_BOOKINGS_SUCCESS} from "./types";
-import {Action, ThunkAction} from '@reduxjs/toolkit';
-import {State} from '../../../../shared/store';
+import {AppThunk} from '../../../../shared/store';
 import {showError} from '../../../../shared/components/error-notification/redux/error.notification.actions';
 import {bookingService} from './BookingService';
 
-export const loadBookings = (userId: number):
-    ThunkAction<void, State, unknown, Action<string>> => async dispatch => {
+export const loadBookings = (userId: number): AppThunk => async dispatch => {
     try {
         const bookingResponse = await bookingService.loadBookings(userId);
         let bookings: Booking[] = bookingResponse.data.map((booking: any) => {

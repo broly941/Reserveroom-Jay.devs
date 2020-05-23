@@ -1,11 +1,9 @@
 import {LOAD_PEOPLE_SUCCESS, People, PeopleActionTypes} from "./types";
 import {peopleService} from './PeopleService';
-import {Action, ThunkAction} from '@reduxjs/toolkit';
-import {State} from '../../../../shared/store';
+import {AppThunk} from '../../../../shared/store';
 import {showError} from '../../../../shared/components/error-notification/redux/error.notification.actions';
 
-export const loadPeople = ():
-    ThunkAction<void, State, unknown, Action<string>> => async dispatch => {
+export const loadPeople = (): AppThunk => async dispatch => {
     try {
         const peopleResponse = await peopleService.loadPeople();
         let people: People[] = peopleResponse.data.map((person: any) => {

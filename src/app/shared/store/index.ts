@@ -1,4 +1,4 @@
-import {combineReducers} from "redux";
+import {Action, combineReducers} from "redux";
 import {bookingReducer} from "../../pages/workspace/booking/redux/booking.reducers";
 import {BookingState} from "../../pages/workspace/booking/redux/types";
 import {PeopleState} from "../../pages/workspace/people/redux/types";
@@ -9,6 +9,7 @@ import {LoginState} from '../../pages/login/redux/types';
 import {loginReducer} from '../../pages/login/redux/login.reducers';
 import {errorReducer} from '../components/error-notification/redux/error.notification.reducers';
 import {ErrorState} from '../components/error-notification/redux/types';
+import {ThunkAction} from '@reduxjs/toolkit';
 
 export interface State {
     errorState: ErrorState,
@@ -18,7 +19,7 @@ export interface State {
     reserveState: ReserveState
 }
 
-export const reducers = combineReducers<State>({
+export const rootReducer = combineReducers<State>({
     errorState: errorReducer,
     loginState: loginReducer,
     bookingState: bookingReducer,
@@ -26,4 +27,4 @@ export const reducers = combineReducers<State>({
     reserveState: reserveReducer
 });
 
-
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, State, unknown, Action<string>>

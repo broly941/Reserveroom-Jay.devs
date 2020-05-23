@@ -5,7 +5,8 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export interface LoginState {
     loggedIn: boolean,
     token: string,
-    userId: number
+    userId: number,
+    username: string
 }
 
 export interface LoginAction {
